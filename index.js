@@ -48,13 +48,12 @@ app.post("/deletequestion", async(req, res) => {
         if (result.deletedCount == 1) {
             response_template.success = true;
             response_template.message = "Deleted successfully.";
-            res.send(response_template);
         }
         else {
             response_template.success = false;
             response_template.message = "Error in delete.";
-            res.send(response_template);
         }
+        res.send(response_template);
         res.end();
     });
 });
@@ -74,13 +73,12 @@ app.post("/updatequestion", async(req, res) => {
         if (result.nModified == 1) {
             response_template.success = true;
             response_template.message = "Updated successfully.";
-            res.send(response_template);
         }
         else {
             response_template.success = false;
             response_template.message = "Error in update.";
-            res.send(response_template);
         }
+        res.send(response_template);
         res.end();
     });
 });

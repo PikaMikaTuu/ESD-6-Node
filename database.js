@@ -36,7 +36,7 @@ const insertOneQna = async (question, answer, a1, a2, a3) => {
             "a2": a2,
             "a3": a3,
         });
-        return await row.save();
+        return row.save();
     }
     catch(e) {
         console.log(e);
@@ -47,7 +47,7 @@ const insertOneQna = async (question, answer, a1, a2, a3) => {
 // ========== UPDATE ==========
 // updateQna("60210f172b53a64f73e7bb50", "Whats 1+2", 3, 2, 6, 7);
 const updateQna = async (_id, question, answer, a1, a2, a3) => {
-    return await QNA.updateOne(
+    return QNA.updateOne(
             { _id },
             { $set: {
                 "question": question,
@@ -63,7 +63,7 @@ const updateQna = async (_id, question, answer, a1, a2, a3) => {
 // ========== DELETE ==========
 // deleteQna("60210f172b53a64f73e7bb50");
 const deleteQna = async (_id) => {
-    return await QNA.deleteOne({ _id });
+    return QNA.deleteOne({ _id });
 }
 
 module.exports = {
