@@ -7,6 +7,9 @@ const PORT = 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// setup a static dir
+app.use(express.static('public'))
+
 // Default template for SUCCESS/ERROR messages.
 var response_template = {
     "success": false,
@@ -81,6 +84,13 @@ app.post("/updatequestion", async(req, res) => {
         res.send(response_template);
         res.end();
     });
+});
+
+app.post("/check", async(req, res) => {
+
+// Loop over JSON, hit a DBFun to check, increment point variable if correct,
+// return id, flag set to true if answered correctly, show points
+
 });
 
 app.listen(PORT, () => {

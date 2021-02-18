@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Quiz App</title>
+  <script src="./js/angular.min.js"></script>
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div ng-app="myApp" ng-init="fetchQuestions()" ng-controller="myCtrl">
+    <h2 class="center-align">Quiz Application</h2>
+
+    <!-- ng repeat here -->
+    <form method="POST" ng-submit="runme()">
+      <div class="row" ng-repeat="q in questions">
+          <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">{{ q.question }}</span>
+                <p>{{ q._id }}</p>
+                <p>{{ q.answer }}</p>
+                <p>{{ q.a1 }}</p>
+                <p>{{ q.a2 }}</p>
+                <p>{{ q.a3 }}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <button type="submit">Click me</button>
+    </form>
+
+  </div>
+<script>
+  let app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope, $http) {
+    // run when component init
+    $scope.fetchQuestions = function() {
+      // fetch questions
+      $http({
+        method: 'GET',
+        url: 'getquestions',
+      }).then(successCallback, errorCallback);
+
+      function successCallback(response) {
+        // populate $scope
+        // console.log(response['data']);
+        $scope.questions = response['data'];
+      }
+
+      function errorCallback(error) {
+        console.log("ERROR IN getquestions" + error);
+      }
+    }
+
+    $scope.runme = function() {
+      alert('runme called');
+      // make HTTP POST /check.
+      // Create JSON as {id: x, answer: x}
+    }
+
+  });
+</script>
+
+</body>
+</html>
